@@ -1,0 +1,16 @@
+{
+    "name": "eclabs/stats",
+    "description": "stats framework .",
+    "keywords": ["framework", "eclabs"],
+    "authors": [
+        {
+            "name": "ryan",
+            "email": "panrui2006@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "monolog/monolog": "~1.11",
+        "mikecao/flight": "^1.2"
+    }
+}
