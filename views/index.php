@@ -41,6 +41,7 @@
 -->
 
 <?php if ($conf) { // 如果设置连接功能?>
+    <?php if ($field_names) {?>
           <h2 class="sub-header"><?php echo $conf['name']; ?></h2>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -49,9 +50,9 @@
                   <?php foreach ($field_names as $k => $v) {?>
 
                       <?php if (Flight::request()->query->orderby == $k) {?>
-                                  <th><a href="?orderby=<?php echo $k;?>&order=<?php if (Flight::request()->query->order == 'ASC') {echo 'DESC';} else {echo 'ASC';}?>"><?php echo $v; ?></a></th>
+                                  <th><a href="?id=<?php echo $conf['id'];?>&orderby=<?php echo $k;?>&order=<?php if (Flight::request()->query->order == 'ASC') {echo 'DESC';} else {echo 'ASC';}?>"><?php echo $v; ?></a></th>
                       <?php } else {?>
-                                  <th><a href="?orderby=<?php echo $k;?>&order=DESC"><?php echo $v?></a></th>
+                                  <th><a href="?id=<?php echo $conf['id'];?>&orderby=<?php echo $k;?>&order=DESC"><?php echo $v?></a></th>
                       <?php } ?>
                   <?php } ?>
                 </tr>
@@ -84,6 +85,7 @@
         </div>
       </div>
     </div>
+    <?php }?>
 <?php }?>
 
 <?php if ($chart_data) { ?>
@@ -96,19 +98,43 @@
         <?php echo $chart_conf['data']['x'];?>
       ],
       datasets : [
-        {
-          label: "My First dataset",
-
-                    fillColor : "rgba(151,187,205,0.2)",
-          strokeColor : "rgba(151,187,205,1)",
-          pointColor : "rgba(151,187,205,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(151,187,205,1)",
-          data : [
-            <?php echo $chart_conf['data']['y'];?>
-          ]
-        },
+        <?php $end = count($chart_conf['data']['y']); ?>
+        <?php $collor = array("rgba(151,187,205,1)", "rgba(100,700,220,1)", "rgba(88,100,220,1)", "rgba(88,100,220,1)", "rgba(644,77,320,1)", "rgba(14,37,320,1)", "rgba(14,437,20,10)", "rgba(314,437,20,10)");?>
+        <?php foreach ($chart_conf['data']['y'] as $key => $y) {?>
+            <?php
+                $default_collor = "rgba(151,187,205,1)";
+                if ($collor[$key]) {
+                    $default_collor = $collor[$key];
+                }
+            ?>
+            <?php if ($key != $end - 1) { ?>
+            {
+              label: "My First dataset",
+              fillColor : "rgba(151,187,205,0.2)",
+              strokeColor : "<?php echo $default_collor; ?>",
+              pointColor : "<?php echo $default_collor; ?>",
+              pointStrokeColor : "#fff",
+              pointHighlightFill : "#fff",
+              pointHighlightStroke : "rgba(151,187,205,1)",
+              data : [
+                <?php echo $y;?>
+              ]
+            },
+            <?php } else {?>
+            {
+              label: "My First dataset",
+              fillColor : "rgba(151,187,205,0.2)",
+              strokeColor : "<?php echo $default_collor; ?>",
+              pointColor : "<?php echo $default_collor; ?>",
+              pointStrokeColor : "#fff",
+              pointHighlightFill : "#fff",
+              pointHighlightStroke : "rgba(151,187,205,1)",
+              data : [
+                <?php echo $y;?>
+              ]
+            }
+            <?php } ?>
+        <?php } ?>
         /*
         {
           label: "My Second dataset",
