@@ -4,9 +4,9 @@
  *
 */
 $users = array(
-    'jindan_user' => array(
-        'username' => 'jindan_user',
-        'password' => 'jindan123qaz',
+    'root' => array(
+        'username' => 'root',
+        'password' => 'root12',
         'expir_time' => time() + 86400,
     )
 );
