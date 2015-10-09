@@ -1,10 +1,5 @@
 <?php
-/**
- * Util
- *
- *       作者: check (check@jindanlicai.com)
- *   创建时间: 2015-08-31 22:50:24
- */
+
 class Util {
     /**
      * statis_config_path

@@ -1,10 +1,4 @@
 <?php
-/**
- * 框架的初始化
- *
- *       作者: check (check@jindanlicai.com)
- *   创建时间: 2015-08-31 22:50:24
- */
 
 // 导入文件
 require '../vendor/autoload.php';
